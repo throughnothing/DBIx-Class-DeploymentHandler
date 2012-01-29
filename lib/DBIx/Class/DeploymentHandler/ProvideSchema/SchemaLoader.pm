@@ -18,7 +18,7 @@ sub schema_for_run_files {
   my $schema = shift->schema->clone;
   my $name = ref($schema) . $cnt++;
   DBIx::Class::Schema::Loader::make_schema_at
-    $name, \%opts, [ sub {$schema->storage->dbh} ];
+    $name, \%opts, $schema->storage->connect_info;
 }
 
 1;
